@@ -7,7 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var helloRouter = require('./routes/hello');
-var notesRouter = require('./routes/notes'); 
+var notesRouter = require('./routes/notes');
+var catRouter = require('./routes/cat');
+var QRCodeRouter = require('./routes/QRCode');
 
 var app = express();
 
@@ -25,14 +27,16 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/hello', helloRouter);
 app.use('/notes', notesRouter);
+app.use('/cat', catRouter);
+app.use('/QRCode', QRCodeRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
